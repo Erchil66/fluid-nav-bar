@@ -61,6 +61,8 @@ class FluidNavBar extends StatefulWidget {
 
   final double? width;
   final BoxDecoration? decoration;
+  final bool? isRotated;
+  final int? quarterRoatet;
 
   FluidNavBar(
       {Key? key,
@@ -72,6 +74,8 @@ class FluidNavBar extends StatefulWidget {
       this.defaultIndex = 0,
       this.width,
       this.decoration,
+      this.isRotated,
+      this.quarterRoatet,
       FluidNavBarItemBuilder? itemBuilder})
       : this.itemBuilder = itemBuilder ?? _identityBuilder,
         assert(icons.length > 1),
@@ -195,8 +199,8 @@ class _FluidNavBarState extends State<FluidNavBar>
                   Colors.white,
               widget.scaleFactor,
               widget.animationFactor,
-              true,
-              1,
+              widget.isRotated ?? false,
+              widget.quarterRoatet ?? 0,
             ),
           ),
         )
