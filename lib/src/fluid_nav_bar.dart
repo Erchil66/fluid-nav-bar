@@ -107,8 +107,9 @@ class _FluidNavBarState extends State<FluidNavBar>
 
   @override
   void didChangeDependencies() {
-    _xController.value =
-        _indexToPosition(_currentIndex) / MediaQuery.of(context).size.width;
+    _xController.value = _indexToPosition(_currentIndex) / widget.width! != 0.0
+        ? widget.width!
+        : MediaQuery.of(context).size.width;
     _yController.value = 1.0;
 
     super.didChangeDependencies();
@@ -156,7 +157,9 @@ class _FluidNavBarState extends State<FluidNavBar>
   Widget _buildBackground() {
     return CustomPaint(
       painter: _BackgroundCurvePainter(
-        _xController.value * MediaQuery.of(context).size.width,
+        _xController.value * widget.width! != 0
+            ? widget.width!
+            : MediaQuery.of(context).size.width,
         Tween<double>(
           begin: Curves.easeInExpo.transform(_yController.value),
           end: ElasticOutCurve(0.38).transform(_yController.value),
@@ -197,7 +200,7 @@ class _FluidNavBarState extends State<FluidNavBar>
   }
 
   double _getButtonContainerWidth() {
-    double width = MediaQuery.of(context).size.width;
+    double width = widget.width ?? MediaQuery.of(context).size.width;
     if (width > 400.0) {
       width = 400.0;
     }
@@ -208,7 +211,7 @@ class _FluidNavBarState extends State<FluidNavBar>
     // Calculate button positions based off of their
     // index (works with `MainAxisAlignment.spaceAround`)
     var buttonCount = widget.icons.length;
-    final appWidth = MediaQuery.of(context).size.width;
+    final appWidth = widget.width ?? MediaQuery.of(context).size.width;
     final buttonsWidth = _getButtonContainerWidth();
     final startX = (appWidth - buttonsWidth) / 2;
     return startX +
@@ -225,7 +228,9 @@ class _FluidNavBarState extends State<FluidNavBar>
 
     _yController.value = 1.0;
     _xController.animateTo(
-        _indexToPosition(index) / MediaQuery.of(context).size.width,
+        _indexToPosition(index) / widget.width! != 0.0
+            ? widget.width!
+            : MediaQuery.of(context).size.width,
         duration: Duration(milliseconds: 620) * widget.animationFactor);
     Future.delayed(
       Duration(milliseconds: 500) * widget.animationFactor,
