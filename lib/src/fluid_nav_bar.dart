@@ -107,8 +107,8 @@ class _FluidNavBarState extends State<FluidNavBar>
 
   @override
   void didChangeDependencies() {
-    _xController.value =
-        _indexToPosition(_currentIndex) / MediaQuery.of(context).size.width;
+    _xController.value = _indexToPosition(_currentIndex) / widget.width!;
+    //MediaQuery.of(context).size.width;
     _yController.value = 1.0;
 
     super.didChangeDependencies();
@@ -139,8 +139,9 @@ class _FluidNavBarState extends State<FluidNavBar>
             child: _buildBackground(),
           ),
           Positioned(
-            left: (widget.width ?? appSize.width - _getButtonContainerWidth()) /
-                2,
+            // left: (widget.width ?? appSize.width - _getButtonContainerWidth()) /
+            //     2,
+            left: (widget.width! - _getButtonContainerWidth()) / 2,
             top: 0,
             width: _getButtonContainerWidth(),
             height: height,
@@ -198,7 +199,8 @@ class _FluidNavBarState extends State<FluidNavBar>
   }
 
   double _getButtonContainerWidth() {
-    double width = MediaQuery.of(context).size.width;
+    double width = widget.width!;
+    // MediaQuery.of(context).size.width;
     if (width > 400.0) {
       width = 400.0;
     }
