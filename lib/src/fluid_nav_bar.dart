@@ -315,6 +315,13 @@ class _BackgroundCurvePainter extends CustomPainter {
       ..lineTo(size.width, size.height)
       ..lineTo(0, size.height);
 
+    ///
+    path.quadraticBezierTo(0.0, size.height, 20.0, size.height);
+    path.quadraticBezierTo(
+        size.width, size.height, size.width, size.height - 20);
+    path.quadraticBezierTo(size.width, 30.0, size.width - 20.0, 30.0);
+    path.quadraticBezierTo(0.0, 0.0, 0.0, 20.0);
+    ////
     final paint = Paint()
       ..color = _color
       ..strokeCap = StrokeCap.round;
