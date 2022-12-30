@@ -313,14 +313,14 @@ class _BackgroundCurvePainter extends CustomPainter {
           x1 + radius, 0)
       ..lineTo(size.width, 0)
       ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height);
-    path.addRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(
-            size.width / 2, size.height / 2, size.width / 4, size.height / 4),
-        Radius.circular(5),
-      ),
-    );
+      ..lineTo(0, size.height)
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+              size.width / 2, size.height / 2, size.width / 4, size.height / 4),
+          Radius.circular(10),
+        ),
+      );
 
     final paint = Paint()
       ..color = _color
