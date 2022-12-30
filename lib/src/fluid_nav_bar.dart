@@ -60,6 +60,7 @@ class FluidNavBar extends StatefulWidget {
   final FluidNavBarItemBuilder itemBuilder;
 
   final double? width;
+  final BoxDecoration? decoration;
 
   FluidNavBar(
       {Key? key,
@@ -70,6 +71,7 @@ class FluidNavBar extends StatefulWidget {
       this.scaleFactor = 1.2,
       this.defaultIndex = 0,
       this.width,
+      this.decoration,
       FluidNavBarItemBuilder? itemBuilder})
       : this.itemBuilder = itemBuilder ?? _identityBuilder,
         assert(icons.length > 1),
@@ -129,6 +131,7 @@ class _FluidNavBarState extends State<FluidNavBar>
     return Container(
       width: widget.width ?? appSize.width,
       height: FluidNavBar.nominalHeight,
+      decoration: widget.decoration ?? BoxDecoration(),
       child: Stack(
         children: [
           Positioned(
