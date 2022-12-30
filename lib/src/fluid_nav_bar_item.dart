@@ -1,6 +1,4 @@
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
-import 'package:fluid_bottom_nav_bar/src/fluid_nav_bar_icon.dart';
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -48,6 +46,9 @@ class FluidNavBarItem extends StatefulWidget {
   /// The delay factor of the animations ( < 1 is faster, > 1 is slower)
   final double animationFactor;
 
+  final bool? isRotated;
+  final int? quarterRoatet;
+
   FluidNavBarItem(
     this.svgPath,
     this.icon,
@@ -58,6 +59,8 @@ class FluidNavBarItem extends StatefulWidget {
     this.backgroundColor,
     this.scaleFactor,
     this.animationFactor,
+    this.isRotated,
+    this.quarterRoatet,
   )   : assert(scaleFactor >= 1.0),
         assert(svgPath == null || icon == null,
             'Cannot provide both an iconPath and an icon.'),
@@ -174,17 +177,27 @@ class _FluidNavBarItemState extends State<FluidNavBarItem>
             Container(
               alignment: Alignment.center,
               child: widget.icon == null
-                  ? SvgPicture.asset(
-                      widget.svgPath!,
-                      color: widget.unselectedForegroundColor,
-                      width: _iconSize,
-                      height: _iconSize * scaleAnimation.value,
-                      colorBlendMode: BlendMode.srcIn,
+                  ? RotatedBox(
+                      quarterTurns: widget.isRotated == false
+                          ? 0
+                          : widget.quarterRoatet ?? 1,
+                      child: SvgPicture.asset(
+                        widget.svgPath!,
+                        color: widget.unselectedForegroundColor,
+                        width: _iconSize,
+                        height: _iconSize * scaleAnimation.value,
+                        colorBlendMode: BlendMode.srcIn,
+                      ),
                     )
-                  : Icon(
-                      widget.icon,
-                      color: widget.unselectedForegroundColor,
-                      size: _iconSize * scaleAnimation.value,
+                  : RotatedBox(
+                      quarterTurns: widget.isRotated == false
+                          ? 0
+                          : widget.quarterRoatet ?? 1,
+                      child: Icon(
+                        widget.icon,
+                        color: widget.unselectedForegroundColor,
+                        size: _iconSize * scaleAnimation.value,
+                      ),
                     ),
             ),
             Container(
@@ -193,17 +206,27 @@ class _FluidNavBarItemState extends State<FluidNavBarItem>
                 clipper: _SvgPictureClipper(
                     _activeColorClipAnimation.value * scaleAnimation.value),
                 child: widget.icon == null
-                    ? SvgPicture.asset(
-                        widget.svgPath!,
-                        color: widget.selectedForegroundColor,
-                        width: _iconSize,
-                        height: _iconSize * scaleAnimation.value,
-                        colorBlendMode: BlendMode.srcIn,
+                    ? RotatedBox(
+                        quarterTurns: widget.isRotated == false
+                            ? 0
+                            : widget.quarterRoatet ?? 1,
+                        child: SvgPicture.asset(
+                          widget.svgPath!,
+                          color: widget.selectedForegroundColor,
+                          width: _iconSize,
+                          height: _iconSize * scaleAnimation.value,
+                          colorBlendMode: BlendMode.srcIn,
+                        ),
                       )
-                    : Icon(
-                        widget.icon,
-                        color: widget.selectedForegroundColor,
-                        size: _iconSize * scaleAnimation.value,
+                    : RotatedBox(
+                        quarterTurns: widget.isRotated == false
+                            ? 0
+                            : widget.quarterRoatet ?? 1,
+                        child: Icon(
+                          widget.icon,
+                          color: widget.selectedForegroundColor,
+                          size: _iconSize * scaleAnimation.value,
+                        ),
                       ),
               ),
             ),
