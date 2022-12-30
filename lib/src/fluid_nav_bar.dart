@@ -306,6 +306,7 @@ class _BackgroundCurvePainter extends CustomPainter {
     final path = Path()
       ..moveTo(0, 0)
       ..lineTo(x0 - radius, 0)
+      ..quadraticBezierTo(0.0, size.height, 20.0, size.height)
       ..cubicTo(
           x0 - radius + anchorControlOffset, 0, x0 - dipControlOffset, y, x0, y)
       ..lineTo(x1, y)
@@ -316,11 +317,11 @@ class _BackgroundCurvePainter extends CustomPainter {
       ..lineTo(0, size.height);
 
     ///
-    path.quadraticBezierTo(0.0, size.height, 20.0, size.height);
-    path.quadraticBezierTo(
-        size.width, size.height, size.width, size.height - 20);
-    path.quadraticBezierTo(size.width, 30.0, size.width - 20.0, 30.0);
-    path.quadraticBezierTo(0.0, 0.0, 0.0, 20.0);
+    // path.quadraticBezierTo(0.0, size.height, 20.0, size.height);
+    // path.quadraticBezierTo(
+    //     size.width, size.height, size.width, size.height - 20);
+    // path.quadraticBezierTo(size.width, 30.0, size.width - 20.0, 30.0);
+    // path.quadraticBezierTo(0.0, 0.0, 0.0, 20.0);
     ////
     final paint = Paint()
       ..color = _color
