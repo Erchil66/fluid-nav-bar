@@ -313,7 +313,13 @@ class _BackgroundCurvePainter extends CustomPainter {
           x1 + radius, 0)
       ..lineTo(size.width, 0)
       ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height);
+      ..lineTo(0, size.height)
+      ..quadraticBezierTo(
+        5 / 2,
+        5 / 2,
+        5,
+        0,
+      );
 
     final paint = Paint()
       ..color = _color
