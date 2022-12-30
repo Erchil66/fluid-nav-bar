@@ -309,7 +309,6 @@ class _BackgroundCurvePainter extends CustomPainter {
       ..cubicTo(
           x0 - radius + anchorControlOffset, 0, x0 - dipControlOffset, y, x0, y)
       ..lineTo(x1, y)
-      ..quadraticBezierTo(0.0, size.height, 20.0, size.height)
       ..cubicTo(x1 + dipControlOffset, y, x1 + radius - anchorControlOffset, 0,
           x1 + radius, 0)
       ..lineTo(size.width, 0)
