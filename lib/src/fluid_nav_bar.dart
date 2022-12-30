@@ -309,7 +309,9 @@ class _BackgroundCurvePainter extends CustomPainter {
       ..lineTo(size.width, size.height)
       ..lineTo(0, size.height);
 
-    final paint = Paint()..color = _color;
+    final paint = Paint()
+      ..color = _color
+      ..strokeCap = StrokeCap.round;
 
     canvas.drawPath(path, paint);
   }
