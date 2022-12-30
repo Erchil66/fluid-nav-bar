@@ -211,7 +211,8 @@ class _FluidNavBarState extends State<FluidNavBar>
     // Calculate button positions based off of their
     // index (works with `MainAxisAlignment.spaceAround`)
     var buttonCount = widget.icons.length;
-    final appWidth = MediaQuery.of(context).size.width;
+    final appWidth = widget.width!;
+    //MediaQuery.of(context).size.width;
     final buttonsWidth = _getButtonContainerWidth();
     final startX = (appWidth - buttonsWidth) / 2;
     return startX +
@@ -227,8 +228,8 @@ class _FluidNavBarState extends State<FluidNavBar>
     });
 
     _yController.value = 1.0;
-    _xController.animateTo(
-        _indexToPosition(index) / MediaQuery.of(context).size.width,
+    _xController.animateTo(_indexToPosition(index) / widget.width!,
+        //MediaQuery.of(context).size.width,
         duration: Duration(milliseconds: 620) * widget.animationFactor);
     Future.delayed(
       Duration(milliseconds: 500) * widget.animationFactor,
